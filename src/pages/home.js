@@ -1,17 +1,16 @@
 import { title } from "../components/title";
 import { button } from "../components/button";
-
-let counter = 0;
+import { stateMgr } from "../index";
 
 export const mountHomePage = () => {
   const rootDiv = document.getElementById("container");
 
   const bodyContainer = document.createElement("div");
   const pageTitle = title("Here you can increase the counter");
-  const counterLabel = title(counter);
+  const counterLabel = title(stateMgr.state.counter);
   const increaseCounterBtn = button("Increase", () => {
-    counter++;
-    counterLabel.innerHTML = counter;
+    stateMgr.updateState({ counter: stateMgr.state.counter + 1 });
+    counterLabel.innerHTML = stateMgr.state.counter;
   });
 
   bodyContainer.appendChild(pageTitle);
